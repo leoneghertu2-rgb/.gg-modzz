@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Modrinth – Minecraft Mods, Plugins, Datapacks, Shaders</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="page">
+    <header class="header">
+      <div class="logo">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+          <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="#30b37c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span>modrinth</span>
+      </div>
+      <nav class="nav">
+        <a href="#">Mods</a>
+        <a href="#">Plugins</a>
+        <a href="#">Data Packs</a>
+        <a href="#">Shaders</a>
+      </nav>
+    </header>
+
+    <main class="main">
+      <h1>Discover Minecraft content</h1>
+      <p class="subtitle">The best place for Minecraft mods, plugins, datapacks, shaders, resource packs, and more.</p>
+      <button id="browseBtn" class="btn">Browse Mods</button>
+    </main>
+
+    <div id="loader" class="loader">
+      <div class="spinner"></div>
+      <p>Connecting to session…</p>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

